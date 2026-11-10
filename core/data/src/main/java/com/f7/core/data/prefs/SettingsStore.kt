@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.f7.core.model.AppSettings
@@ -55,6 +56,9 @@ class SettingsStore(private val context: Context) {
         val BROWSER_HOME = stringPreferencesKey("browser_home")
         val NOTIF_COMPLETE = booleanPreferencesKey("notif_complete")
         val CLOSE_SHEET_ON_SHARE = booleanPreferencesKey("close_sheet_on_share")
+        val REMOVE_ADS = booleanPreferencesKey("remove_ads_purchased")
+        val AD_FREE_UNTIL = longPreferencesKey("ad_free_until")
+        val INTERSTITIAL_LAST = longPreferencesKey("interstitial_last_shown")
     }
 
     val settings: Flow<AppSettings> = context.dataStore.data.map { p ->
@@ -95,6 +99,9 @@ class SettingsStore(private val context: Context) {
             browserHomepage = p[Keys.BROWSER_HOME] ?: "https://www.google.com",
             notificationComplete = p[Keys.NOTIF_COMPLETE] ?: true,
             closeAddSheetOnShare = p[Keys.CLOSE_SHEET_ON_SHARE] ?: true,
+            removeAdsPurchased = p[Keys.REMOVE_ADS] ?: false,
+            adFreeUntil = p[Keys.AD_FREE_UNTIL] ?: 0L,
+            interstitialLastShownAt = p[Keys.INTERSTITIAL_LAST] ?: 0L,
         )
     }
 
@@ -138,6 +145,9 @@ class SettingsStore(private val context: Context) {
     suspend fun setBrowserHomepage(value: String) = put { it[Keys.BROWSER_HOME] = value.trim() }
     suspend fun setNotificationComplete(value: Boolean) = put { it[Keys.NOTIF_COMPLETE] = value }
     suspend fun setCloseAddSheetOnShare(value: Boolean) = put { it[Keys.CLOSE_SHEET_ON_SHARE] = value }
+    suspend fun setRemoveAdsPurchased(value: Boolean) = put { it[Keys.REMOVE_ADS] = value }
+    suspend fun setAdFreeUntil(value: Long) = put { it[Keys.AD_FREE_UNTIL] = value }
+    suspend fun setInterstitialLastShown(value: Long) = put { it[Keys.INTERSTITIAL_LAST] = value }
 
     suspend fun reset() {
         context.dataStore.edit { it.clear() }
@@ -147,4 +157,5 @@ class SettingsStore(private val context: Context) {
         context.dataStore.edit(block)
     }
 }
+
 

@@ -340,7 +340,7 @@
 
     <!-- About -->
     <string name="about_title">About F7</string>
-    <string name="about_tagline">A modern download manager. Fast, lightweight, no ads.</string>
+    <string name="about_tagline">A modern download manager. Fast and lightweight.</string>
     <string name="about_version">Version %1$s</string>
     <string name="about_license">License</string>
     <string name="about_license_desc">This app is licensed under GNU GPL-3.0-or-later. Source code is available under the license terms.</string>
@@ -355,7 +355,7 @@
     <string name="about_not_included_desc">Torrent and magnet support is not included because it would significantly increase size and complexity. There are no fake buttons for it.</string>
     <string name="about_benchmark_title">Benchmark</string>
     <string name="about_benchmark_desc">Speed depends on the server and network. Tests were run against a local Range-capable server, including interrupted connections and app restarts. Full results are in the project documentation.</string>
-    <string name="about_privacy_short">No account, no ads, no tracking.</string>
+    <string name="about_privacy_short">No account, no server, no tracking.</string>
     <string name="about_thanks">Thanks to Material Symbols, Manrope, OkHttp, Room, and Jetpack Compose.</string>
     <string name="about_licenses">Third-party licenses</string>
     <string name="about_privacy">Privacy</string>
@@ -379,6 +379,26 @@
     <string name="privacy_storage_desc">Files are stored in the folder you choose through MediaStore or the Storage Access Framework. You can delete them anytime from the app or a file manager.</string>
     <string name="privacy_section_contact">Contact</string>
     <string name="privacy_contact_desc">For privacy questions, open the project page and file an issue. No data is automatically collected by the developer.</string>
+
+    <!-- Ads and purchase -->
+    <string name="ads_remove_title">Remove ads</string>
+    <string name="ads_remove_subtitle">One-time purchase, no subscription</string>
+    <string name="ads_remove_active_title">Ads are off</string>
+    <string name="ads_remove_active_message">Thank you for supporting F7. Every banner, interstitial, and rewarded ad is disabled on this device.</string>
+    <string name="ads_remove_price">Remove ads · %1$s</string>
+    <string name="ads_remove_buy">Remove ads</string>
+    <string name="ads_remove_buying">Opening Play…</string>
+    <string name="ads_restore">Restore purchase</string>
+    <string name="ads_rewarded_title">Watch an ad for %1$s ad-free</string>
+    <string name="ads_rewarded_message">No banner and no interstitial during that window. This option is free.</string>
+    <string name="ads_rewarded_watch">Watch ad</string>
+    <string name="ads_rewarded_granted">Ad-free for %1$s</string>
+    <string name="ads_rewarded_unavailable">No ad available right now. Try again in a moment.</string>
+    <string name="ads_adfree_until">Ad-free until %1$s</string>
+    <string name="ads_unavailable">Play Billing is not available on this device</string>
+    <string name="ads_purchase_note">The price is set in Google Play. Purchases are restored automatically on every device signed in with the same account.</string>
+    <string name="ads_loading">Checking your purchase…</string>
+    <string name="ads_settings_row_desc">Remove every ad with a one-time purchase</string>
 
     <!-- Statistics -->
     <string name="stats_title">Statistics</string>
@@ -526,6 +546,8 @@
     <string name="open_download">Open download</string>
     <string name="app_locked">F7 runs without ads and without an account.</string>
 </resources>
+
+
 
 
 

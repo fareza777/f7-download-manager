@@ -1,9 +1,19 @@
 ﻿# Google Play submission checklist
 
 Package: `com.f7.downloadmanager`
-Version: `1.1.0` (versionCode 2)
+Version: `1.2.0` (versionCode 3)
 Min SDK: 26 (Android 8.0)
 Target/compile SDK: 36 (Android 16)
+
+## Advertising and monetization
+
+- [x] AdMob SDK integrated (banner, interstitial, rewarded) with test ad units by default.
+- [ ] Replace `admobAppId` and the three ad unit IDs in `app/build.gradle.kts` with production values.
+- [ ] Set `USE_TEST_ADS = false` for the Play build.
+- [ ] Create the one-time in-app product `f7_remove_ads` priced at $4.99 in Play Console.
+- [ ] Declare Advertising ID usage in Data safety (the `AD_ID` permission is declared).
+- [ ] Confirm the banner never overlaps system navigation (it sits above the app bottom bar).
+- [ ] Update the privacy policy URL with the advertising section.
 
 ## 1. Build artifacts
 

@@ -96,6 +96,8 @@ fun SettingsScreen(
     onOpenPrivacy: () -> Unit,
     onOpenStats: () -> Unit,
     onOpenAdvanced: () -> Unit,
+    onOpenRemoveAds: () -> Unit,
+    adFree: Boolean,
     snackbar: SnackbarHostState,
 ) {
     val context = LocalContext.current
@@ -640,6 +642,19 @@ fun SettingsScreen(
                     item {
                         F7Card {
                             SettingsRow(
+                                icon = R.drawable.ic_f7_workspace_premium,
+                                title = stringResource(
+                                    if (adFree) R.string.ads_remove_active_title
+                                    else R.string.ads_remove_title
+                                ),
+                                subtitle = stringResource(
+                                    if (adFree) R.string.ads_remove_active_message
+                                    else R.string.ads_settings_row_desc
+                                ),
+                                onClick = onOpenRemoveAds
+                            )
+                            F7Divider()
+                            SettingsRow(
                                 icon = R.drawable.ic_f7_bar_chart,
                                 title = stringResource(R.string.settings_stats),
                                 subtitle = stringResource(R.string.settings_stats_desc),
@@ -895,6 +910,7 @@ private fun SettingsRow(
         )
     }
 }
+
 
 
 

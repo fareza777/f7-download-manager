@@ -17,7 +17,7 @@ names = [
     "download_done", "downloading", "hourglass_top", "stop_circle", "add_circle",
     "arrow_forward", "keyboard_arrow_down", "sort", "grid_view", "list", "open_with",
     "apps", "file_open", "drive_file_rename_outline", "undo", "workspace_premium",
-    "bar_chart", "insights", "bookmark", "bookmark_add", "bookmark_remove", "history",
+    "shopping_cart", "bar_chart", "insights", "bookmark", "bookmark_add", "bookmark_remove", "history",
     "arrow_upward", "arrow_downward", "queue", "sort_by_alpha", "find_in_page",
     "desktop_windows", "cookie", "javascript", "home", "clear_all", "data_usage",
 ]
@@ -73,4 +73,5 @@ for name in names:
 print("converted", ok, "of", len(names))
 if failed:
     print("failed:", failed)
+
 

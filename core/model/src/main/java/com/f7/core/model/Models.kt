@@ -168,7 +168,11 @@ data class AppSettings(
     val browserHomepage: String = "https://www.google.com",
     val notificationComplete: Boolean = true,
     val closeAddSheetOnShare: Boolean = true,
+    val removeAdsPurchased: Boolean = false,
+    val adFreeUntil: Long = 0L,
+    val interstitialLastShownAt: Long = 0L,
 )
+
 
 
 

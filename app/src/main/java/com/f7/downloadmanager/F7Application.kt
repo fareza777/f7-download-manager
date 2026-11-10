@@ -1,4 +1,4 @@
-package com.f7.downloadmanager
+﻿package com.f7.downloadmanager
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,8 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import com.f7.core.data.DataCore
 import com.f7.core.download.schedule.ScheduleManager
+import com.f7.downloadmanager.ads.AdController
+import com.f7.downloadmanager.ads.BillingManager
 import com.f7.core.download.service.DownloadService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,8 +21,31 @@ class AppGraph(val context: Context) {
     val storageManager = DataCore.storageManager
     val scheduleManager = ScheduleManager(context, repository)
 
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    val adController = AdController(context, settingsStore, scope)
+    val billing = BillingManager(context, settingsStore, scope)
+
+    init {
+        // Only initialise the SDK here; each format is preloaded from the init
+        // callback so requests are never made before the SDK is ready.
+        adController.initialize()
+        billing.start()
+    }
+
     fun startServiceSafely() {
         runCatching { DownloadService.start(context) }
+    }
+
+    fun findActivity(): android.app.Activity? {
+        if (context is android.app.Activity) return context
+        if (context is android.content.ContextWrapper) {
+            var base: android.content.Context? = context
+            while (base is android.content.ContextWrapper) {
+                if (base is android.app.Activity) return base
+                base = base.baseContext
+            }
+        }
+        return null
     }
 }
 
@@ -102,3 +127,6 @@ class F7Application : android.app.Application() {
         }
     }
 }
+
+
+

@@ -1,4 +1,26 @@
-# Privacy Policy — F7 Download Manager
+# Privacy Policy
+
+_Last updated: 2026-11-10_
+
+## Advertising and purchases
+
+F7 shows optional advertising supplied by Google AdMob (banner, interstitial, and
+rewarded formats). Google and its partners may collect device identifiers
+(including the advertising ID), approximate location derived from IP, and ad
+interaction data to serve and measure ads. That processing is governed by
+Google's own policies, not by F7.
+
+You can remove all advertising at any time:
+
+- A one-time **Remove ads** purchase in Google Play disables every ad format
+  permanently for your Google account.
+- Watching a **rewarded ad** grants a temporary ad-free window without paying.
+
+While you are ad-free, F7 does not request or render any ad, so no ad request
+leaves the device. Purchases are processed by Google Play Billing; F7 never sees
+or stores your payment details.
+
+You can reset or delete your advertising ID in Android Settings > Google > Ads.
 
 **Last updated: 10 November 2026**
 

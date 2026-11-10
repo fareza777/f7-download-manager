@@ -43,14 +43,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import android.app.Activity
 import com.f7.core.model.AppSettings
 import com.f7.downloadmanager.DownloadsViewModel
+import com.f7.downloadmanager.ads.AdBannerSlot
 import com.f7.downloadmanager.F7Application
 import com.f7.downloadmanager.R
 
@@ -82,6 +85,8 @@ fun F7App(
     var showAddSheet by rememberSaveable { mutableStateOf(false) }
     var addPrefill by rememberSaveable { mutableStateOf<String?>(null) }
     val shareMessage = stringResource(R.string.share_received, sharedCount)
+    val localContext = androidx.compose.ui.platform.LocalContext.current
+    val currentActivity = localContext as? Activity
 
     LaunchedEffect(initialDownloadId) {
         if (initialDownloadId != null) {
@@ -103,16 +108,25 @@ fun F7App(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
             if (showBottomBar) {
-                F7BottomBar(
-                    currentRoute = currentRoute,
-                    onNavigate = { route ->
-                        navController.navigate(route) {
-                            popUpTo(navController.graph.findStartDestination().id) { saveState = true }
-                            launchSingleTop = true
-                            restoreState = true
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    // Banner sits between the page content and the app bottom bar.
+                    // The bottom bar keeps the system navigation inset, so the ad can
+                    // never cover Android navigation buttons.
+                    AdBannerSlot(
+                        adController = app.graph.adController,
+                        visible = !showAddSheet,
+                    )
+                    F7BottomBar(
+                        currentRoute = currentRoute,
+                        onNavigate = { route ->
+                            navController.navigate(route) {
+                                popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
                         }
-                    }
-                )
+                    )
+                }
             }
         }
     ) { padding ->
@@ -164,6 +178,8 @@ fun F7App(
                         onOpenPrivacy = { navController.navigate("privacy") },
                         onOpenStats = { navController.navigate("stats") },
                         onOpenAdvanced = { navController.navigate("advanced") },
+                        onOpenRemoveAds = { navController.navigate("remove_ads") },
+                        adFree = app.graph.adController.adFree.collectAsStateWithLifecycle().value,
                         snackbar = snackbarHostState,
                     )
                 }
@@ -191,6 +207,12 @@ fun F7App(
                         snackbar = snackbarHostState,
                     )
                 }
+                composable("remove_ads") {
+                    RemoveAdsScreen(
+                        onBack = { navController.popBackStack() },
+                        snackbar = snackbarHostState,
+                    )
+                }
                 composable("about") {
                     AboutScreen(onBack = { navController.popBackStack() })
                 }
@@ -213,6 +235,14 @@ fun F7App(
             onEnqueued = { count ->
                 showAddSheet = false
                 addPrefill = null
+                val activity = currentActivity
+                if (activity != null) {
+                    // Let the sheet close and the list settle before covering the
+                    // screen, so the ad never interrupts an in-flight animation.
+                    android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                        app.graph.adController.showInterstitial(activity)
+                    }, 900)
+                }
                 count
             },
             snackbar = snackbarHostState,
@@ -317,6 +347,12 @@ private fun unusedIcons(): Painter = painterResource(R.drawable.ic_f7_download)
 
 @Suppress("unused")
 private val ignore = Configuration.ORIENTATION_UNDEFINED
+
+
+
+
+
+
 
 
 

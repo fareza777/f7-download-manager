@@ -14,10 +14,19 @@ android {
         applicationId = "com.f7.downloadmanager"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "1.1.0"
+        versionCode = 3
+        versionName = "1.2.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
+
+        // AdMob + Play Billing identifiers. Replace the release values with your own
+        // AdMob app/ad unit IDs and the Play Console product id before publishing.
+        manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+        buildConfigField("String", "ADMOB_BANNER_ID", "\"ca-app-pub-3940256099942544/6300978111\"")
+        buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"ca-app-pub-3940256099942544/1033173712\"")
+        buildConfigField("String", "ADMOB_REWARDED_ID", "\"ca-app-pub-3940256099942544/5224354917\"")
+        buildConfigField("String", "REMOVE_ADS_PRODUCT_ID", "\"f7_remove_ads\"")
+        buildConfigField("boolean", "USE_TEST_ADS", "true")
     }
 
     signingConfigs {
@@ -83,10 +92,13 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material.icons.core)
+    implementation(libs.play.services.ads)
+    implementation(libs.billing.ktx)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+
 

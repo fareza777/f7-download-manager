@@ -3,7 +3,7 @@
 A modern, lightweight Android download manager built natively with Kotlin and
 Jetpack Compose. No account, no server, no ads, and no paid API.
 
-**Status:** **1.1.0** release APK/AAB builds successfully; 17 JVM tests pass. Core download
+**Status:** **1.2.0** release APK/AAB builds successfully; 17 JVM tests pass. Core download
 paths were verified end-to-end on an Android 15 emulator (fresh, pause, force-stop resume,
 connection drop, network loss, HLS, AES-128 HLS) and on a physical Redmi Note 11 / Android 13
 (30 MB fresh download with an exact SHA-256 match, queue pause/resume, browser bookmark/library,
@@ -30,6 +30,41 @@ the dashboard displays live measured throughput only.
   HTTP timeouts/buffer, temporary-condition auto-pause with power/network broadcast recovery,
   and DB v3 migration.
 
+
+
+## Monetization (1.2.0)
+
+F7 is free and supported by Google AdMob. Three formats are wired through a single
+`AdController`:
+
+| Format | Placement | Rules |
+| --- | --- | --- |
+| Banner | Anchored adaptive banner in the Scaffold bottom slot, above the app bottom bar | Never overlaps the Android navigation bar or the app tabs; hidden while a sheet is open; removed entirely when the ad fails |
+| Interstitial | After a batch of downloads is added | 3-minute cooldown, never shown to ad-free users, delayed until the sheet has closed |
+| Rewarded | "Watch an ad for 2 hours ad-free" on the Remove ads screen | Grants a real 2-hour ad-free window, opt-in only |
+
+**Remove ads** is a one-time Google Play in-app product (`f7_remove_ads`) priced at
+**$4.99**. The price shown in the UI comes from Play Billing, not a hard-coded string,
+and purchases are acknowledged, restored on every launch, and applied instantly.
+
+Ad-free state is stored in DataStore (`remove_ads_purchased`, `ad_free_until`) and is
+checked before every request, so a paying user never downloads an ad creative.
+
+### Before publishing
+
+The build ships with Google's official **test** ad units and `USE_TEST_ADS = true` so
+the project compiles and runs without an AdMob account. Replace these in
+`app/build.gradle.kts`:
+
+```kotlin
+manifestPlaceholders["admobAppId"] = "ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX"
+buildConfigField("String", "ADMOB_BANNER_ID", "\"ca-app-pub-.../...\"")
+buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"ca-app-pub-.../...\"")
+buildConfigField("String", "ADMOB_REWARDED_ID", "\"ca-app-pub-.../...\"")
+buildConfigField("boolean", "USE_TEST_ADS", "false")
+```
+
+Then create the `f7_remove_ads` in-app product in Play Console with a $4.99 price.
 
 ## Screenshots
 
