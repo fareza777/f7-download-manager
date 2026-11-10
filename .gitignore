@@ -1,0 +1,16 @@
+.gradle/
+**/build/
+local.properties
+keystore/
+*.jks
+*.keystore
+**/keystore.properties
+**/signing.properties
+.idea/
+*.iml
+captures/
+docs/screens/phone/
+docs/screens/demo-*.png
+scripts/*.log
+*.hprof
+docs/SIGNING.md

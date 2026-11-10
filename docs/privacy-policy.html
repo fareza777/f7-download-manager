@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — F7 Download Manager</title>
+<style>
+  :root { --ink:#101828; --muted:#5b6474; --line:#e7e5dd; --bg:#faf9f5; --brand:#1f4bd8; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 22px 80px; }
+  .badge { display:inline-flex; align-items:center; gap:8px; background:#e6edff; color:var(--brand); font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:6px 12px; border-radius:999px; }
+  h1 { font-size: 38px; line-height:1.15; letter-spacing:-.02em; margin:18px 0 6px; }
+  .updated { color:var(--muted); font-size:14px; margin-bottom:28px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:20px; padding:22px 24px; margin:14px 0; box-shadow:0 1px 2px rgba(16,24,40,.04); }
+  h2 { font-size:20px; margin:6px 0 8px; letter-spacing:-.01em; }
+  p, li { color:#31394a; }
+  ul { padding-left: 20px; }
+  a { color:var(--brand); }
+  footer { color:var(--muted); font-size:13px; margin-top:28px; }
+</style>
+</head>
+<body>
+<main>
+  <span class="badge">F7 Download Manager</span>
+  <h1>Privacy Policy</h1>
+  <div class="updated">Last updated: 10 November 2026</div>
+
+  <div class="card">
+    <p>F7 Download Manager (“F7”, “the app”) is a local download manager for Android. It does not require an account, contains no advertising, and includes no analytics or tracking SDKs.</p>
+  </div>
+
+  <div class="card">
+    <h2>1. Data processed on your device</h2>
+    <p>F7 stores the following locally in the app database and preferences: download URLs and original URLs; file names, MIME types, sizes, progress, segment offsets, and ETags; optional SHA-256 checksums you explicitly compute; schedules you create; app settings; and temporary file handles needed to resume downloads.</p>
+    <p>This data never leaves your device except as described below. Uninstalling the app removes its database and preferences.</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Network connections</h2>
+    <ul>
+      <li>For a download, F7 sends HTTP requests (including Range requests, and cookies/referer/user agent when the link came from the built-in browser) directly to the server you chose.</li>
+      <li>The browser loads the sites you navigate to using Android WebView.</li>
+      <li>HLS playlists and segments are requested from the media server you select.</li>
+    </ul>
+    <p>F7 does not operate a relay server, proxy, cloud account, or synchronization service. The developer does not receive your URLs, files, browsing history, or settings.</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Permissions</h2>
+    <ul>
+      <li><strong>Internet and network state</strong> — download files and detect connectivity.</li>
+      <li><strong>Foreground service (dataSync)</strong> — keep downloads running in the background with a visible notification.</li>
+      <li><strong>Notifications (Android 13+)</strong> — show progress and pause/resume controls.</li>
+      <li><strong>Wake lock</strong> — keep the CPU awake only while downloads are active.</li>
+      <li><strong>Receive boot completed</strong> — restore schedules after a reboot.</li>
+    </ul>
+    <p>F7 does not request location, contacts, camera, microphone, SMS, phone, or broad storage permissions. Files are written through MediaStore or the Storage Access Framework folder you choose.</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Advertising, analytics, and sharing</h2>
+    <p>F7 contains no ads, advertising identifiers, analytics SDK, crash reporting SDK, or social SDK. The developer does not sell or share personal data. Android backup is disabled for this app.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Children</h2>
+    <p>F7 is a general-purpose utility and does not knowingly collect personal information from anyone, including children. The built-in browser can access third-party websites whose content is outside the developer’s control.</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Data retention and deletion</h2>
+    <p>All data is local. You can delete individual downloads and files in the app, clear completed downloads in Settings, clear browser data from the browser menu, or uninstall the app to remove all app data. There is no server-side account or data to delete.</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Security</h2>
+    <p>F7 uses HTTPS where supported, blocks invalid SSL certificates, and disables local file access and JavaScript bridges in the browser. Cleartext HTTP links are supported for compatibility and are flagged before download.</p>
+  </div>
+
+  <div class="card">
+    <h2>8. Changes and contact</h2>
+    <p>If this policy changes, the date above changes. Material changes appear in release notes. For privacy questions, use the project repository or the developer contact on the Google Play listing. The app itself collects no contact data.</p>
+  </div>
+
+  <footer>F7 Download Manager is licensed under GPL-3.0-or-later. This page is intended to be hosted at a public HTTPS URL for the Google Play listing.</footer>
+</main>
+</body>
+</html>

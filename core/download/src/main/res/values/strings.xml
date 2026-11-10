@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="f7_channel_active">Active downloads</string>
+    <string name="f7_channel_active_desc">Progress of running downloads</string>
+    <string name="f7_channel_done">Download finished</string>
+    <string name="f7_channel_done_desc">Alerts when a download completes or fails</string>
+    <string name="f7_channel_schedule">Schedules</string>
+    <string name="f7_channel_schedule_desc">Scheduled download reminders</string>
+    <string name="f7_notif_preparing">Preparing download…</string>
+    <string name="f7_notif_preparing_desc">Connecting to the server</string>
+    <string name="f7_notif_completed">Download complete</string>
+    <string name="f7_notif_failed">Download failed</string>
+    <string name="f7_notif_waiting_network">Waiting for connection</string>
+    <string name="f7_notif_waiting_network_desc">The download resumes automatically when the internet is available</string>
+    <string name="f7_notif_timeout">Download paused by the system</string>
+    <string name="f7_notif_timeout_desc">Open F7 to resume the download</string>
+    <string name="f7_notif_more">+%1$d more</string>
+    <string name="f7_action_pause">Pause</string>
+    <string name="f7_action_resume">Resume</string>
+    <string name="f7_action_cancel">Cancel</string>
+    <string name="f7_action_start_now">Start now</string>
+    <string name="f7_schedule_notification_title">Scheduled download</string>
+    <string name="f7_schedule_notification_text">Tap to start the download</string>
+</resources>
+
+
