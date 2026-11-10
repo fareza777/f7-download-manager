@@ -14,3 +14,4 @@ docs/screens/demo-*.png
 scripts/*.log
 *.hprof
 docs/SIGNING.md
+scripts/billingtmp/
